@@ -86,10 +86,10 @@ namespace RestItemService.Controllers
 
         //
         [HttpGet]
-        []
+        [Route("Search")]
         public IEnumerable<Item> GetWithFilter([FromQuery] FilterItem filter)
         {
-
+            return items.FindAll(i => i.Quantity >= filter.LowQuantity && i.Quantity <= filter.HighQuantity);
         }
     }
 }
