@@ -83,5 +83,13 @@ namespace RestItemService.Controllers
         {
             return items.FindAll(i => i.Quality.Contains(substring));
         }
+
+        //
+        [HttpGet]
+        []
+        public IEnumerable<Item> GetWithFilter([FromQuery] FilterItem filter)
+        {
+
+        }
     }
 }
