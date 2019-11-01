@@ -9,7 +9,7 @@ using ModelLib.Model;
 
 namespace RestItemService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/localItems")]
     [ApiController]
     public class ItemsController : ControllerBase
     {
@@ -30,7 +30,8 @@ namespace RestItemService.Controllers
         }
 
         // GET: api/Items/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet]
+        [Route("{id}")]
         public Item Get(int id)
         {
             return items.Find(i => i.Id == id);
@@ -44,7 +45,8 @@ namespace RestItemService.Controllers
         }
 
         // PUT: api/Items/5
-        [HttpPut("{id}")]
+        [HttpPut]
+        [Route("{id}")]
         public void Put(int id, [FromBody] Item putItem)
         {
             Item item = Get(id);
@@ -58,11 +60,28 @@ namespace RestItemService.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("{id}")]
         public void Delete(int id)
         {
             Item item = Get(id);
             items.Remove(item);
+        }
+
+        //
+        [HttpGet]
+        [Route("Name/{substring}")]
+        public IEnumerable<Item> GetFromSubstring(string substring)
+        {
+            return items.FindAll(i => i.Name.Contains(substring));
+        }
+
+        //
+        [HttpGet]
+        [Route("Quality/{substring}")]
+        public IEnumerable<Item> GetFromQuality(string substring)
+        {
+            return items.FindAll(i => i.Quality.Contains(substring));
         }
     }
 }
