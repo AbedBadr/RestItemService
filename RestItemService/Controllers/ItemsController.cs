@@ -23,6 +23,10 @@ namespace RestItemService.Controllers
         };
 
         // GET: api/Items
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<Item> Get()
         {
@@ -30,6 +34,11 @@ namespace RestItemService.Controllers
         }
 
         // GET: api/Items/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public Item Get(int id)
@@ -38,6 +47,10 @@ namespace RestItemService.Controllers
         }
 
         // POST: api/Items
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
         [HttpPost]
         public void Post([FromBody] Item item)
         {
@@ -45,6 +58,11 @@ namespace RestItemService.Controllers
         }
 
         // PUT: api/Items/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="putItem"></param>
         [HttpPut]
         [Route("{id}")]
         public void Put(int id, [FromBody] Item putItem)
@@ -60,6 +78,10 @@ namespace RestItemService.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         [HttpDelete]
         [Route("{id}")]
         public void Delete(int id)
@@ -68,7 +90,11 @@ namespace RestItemService.Controllers
             items.Remove(item);
         }
 
-        //
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="substring"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Name/{substring}")]
         public IEnumerable<Item> GetFromSubstring(string substring)
@@ -76,7 +102,11 @@ namespace RestItemService.Controllers
             return items.FindAll(i => i.Name.Contains(substring));
         }
 
-        //
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="substring"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Quality/{substring}")]
         public IEnumerable<Item> GetFromQuality(string substring)
@@ -84,7 +114,11 @@ namespace RestItemService.Controllers
             return items.FindAll(i => i.Quality.Contains(substring));
         }
 
-        //
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Search")]
         public IEnumerable<Item> GetWithFilter([FromQuery] FilterItem filter)
