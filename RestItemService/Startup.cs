@@ -27,7 +27,21 @@ namespace RestItemService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "Items API", Version = "v1.0"}); });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info()
+                    {
+                        Title = "Items API", Version = "v1.0", Description = "Example of OpenAPI for api/localItems", TermsOfService = "None", Contact = new Contact()
+                        {
+                            Name = "Abed", Email = "abed0158@edu.easj.dk", Url = "localhost:44346/localItems"
+                        },
+                        License = new License()
+                        {
+                            Name = "No license required", Url = String.Empty
+                        }
+                    }
+                );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
