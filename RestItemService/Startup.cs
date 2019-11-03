@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -31,7 +32,8 @@ namespace RestItemService
             {
                 c.SwaggerDoc("v1", new Info()
                     {
-                        Title = "Items API", Version = "v1.0", Description = "Example of OpenAPI for api/localItems", TermsOfService = "None", Contact = new Contact()
+                        Title = "Items API", Version = "v1.0", Description = "Example of OpenAPI for api/localItems",
+                        TermsOfService = "None", Contact = new Contact()
                         {
                             Name = "Abed", Email = "abed0158@edu.easj.dk", Url = "localhost:44346/localItems"
                         },
@@ -41,6 +43,9 @@ namespace RestItemService
                         }
                     }
                 );
+                var xmlFile = "{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 
