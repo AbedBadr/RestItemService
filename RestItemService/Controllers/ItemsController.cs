@@ -13,7 +13,7 @@ namespace RestItemService.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private static List<Item> items = new List<Item>()
+        public static List<Item> items = new List<Item>()
         {
             new Item(1, "Bread", "Low", 33),
             new Item(2, "Bread", "Middle", 21),
